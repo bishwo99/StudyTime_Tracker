@@ -16,3 +16,8 @@ def add_session(request):
         form = SessionForm()
 
     return render(request,'form.html', {'form' : form})
+
+
+def session_list(request):
+    sessions = StudySession.objects.filter(user = request.user)
+    return render(request,'session_list.html', {"sessions" : sessions})
