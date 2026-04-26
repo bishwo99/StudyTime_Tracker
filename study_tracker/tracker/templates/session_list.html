@@ -9,7 +9,9 @@
     <h2>My sessions</h2>
     {% for session in sessions %}
     <p>{{session.subject}} - {{session.hours|floatformat:0}}h - {{session.date}} </p>
-    <a href=" {% url 'delete_session' session.id%} ">Delete</a>
+    <a href=" {% url 'delete_session' session.id%} "> <button type="delete">Delete</button></a>
+    <a href="{% url 'update_session' session.id %}"><button type="button">Edit</button></a>
+
     {% endfor %}
 </body>
 </html>
