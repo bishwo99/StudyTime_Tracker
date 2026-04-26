@@ -6,3 +6,6 @@ class StudySession(models.Model):
     hours = models.FloatField()
     date = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.subject
