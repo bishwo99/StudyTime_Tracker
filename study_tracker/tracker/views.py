@@ -1,6 +1,6 @@
 from . forms import SessionForm
 from . models import StudySession
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 
 
 def add_session(request):
@@ -21,3 +21,9 @@ def add_session(request):
 def session_list(request):
     sessions = StudySession.objects.filter(user = request.user)
     return render(request,'session_list.html', {"sessions" : sessions})
+
+
+def delete_session(request , id):
+    session = get_object_or_404(StudySession, id = id, user=request.user)
+    session.delete()
+    return redirect('session_list')
