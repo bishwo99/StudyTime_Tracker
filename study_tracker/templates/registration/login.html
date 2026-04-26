@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="p-4" style="
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    ">
+      <h3 class="text-white fw-semibold text-center mb-4">Login</h3>
+      <form method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; border-radius: 10px; font-size: 0.85rem;">
+          Invalid username or password
+        </div>
+        {% endif %}
+        <div class="mb-3">
+          <input type="text" name="username" class="form-control" placeholder="Username"
+            style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: white; border-radius: 10px; padding: 10px 14px;">
+        </div>
+        <div class="mb-4">
+          <input type="password" name="password" class="form-control" placeholder="Password"
+            style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: white; border-radius: 10px; padding: 10px 14px;">
+        </div>
+        <button class="btn w-100"
+          style="background: #2563eb; color: white; border-radius: 10px; padding: 10px; font-size: 0.9rem; border: none;">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  input::placeholder { color: rgba(255,255,255,0.4); }
+  input:focus {
+    outline: none;
+    background: rgba(255,255,255,0.12) !important;
+    border-color: rgba(255,255,255,0.3) !important;
+    color: white !important;
+    box-shadow: none !important;
+  }
+</style>
+{% endblock %}

@@ -6,3 +6,8 @@ class SessionForm(forms.ModelForm):
     class Meta():
         model = StudySession
         fields = ['subject','hours','date']
+        widgets = {
+            'subject': forms.TextInput(attrs={'class': 'form-control'}),
+            'hours': forms.NumberInput(attrs={'class': 'form-control'}),
+            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }
