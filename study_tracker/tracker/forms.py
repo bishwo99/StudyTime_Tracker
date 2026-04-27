@@ -1,6 +1,7 @@
 from django import forms
 from . models import StudySession
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 class SessionForm(forms.ModelForm):
     class Meta():
@@ -11,3 +12,8 @@ class SessionForm(forms.ModelForm):
             'hours': forms.NumberInput(attrs={'class': 'form-control'}),
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
+
+class UserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username','password1','password2']

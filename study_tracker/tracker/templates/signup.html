@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="p-4" style="
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    ">
+      <h3 class="text-white fw-semibold text-center mb-1">Create Account</h3>
+      <p class="text-center mb-4" style="color: rgba(255,255,255,0.45); font-size: 0.85rem;">Start tracking your study sessions</p>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="alert mb-3" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; border-radius: 10px; font-size: 0.85rem;">
+          Please fix the errors below.
+        </div>
+        {% endif %}
+
+        <!-- Username -->
+        <div class="mb-3">
+          <label class="form-label" style="color: rgba(255,255,255,0.75); font-size: 0.85rem;">Username</label>
+          <input type="text" name="username" class="form-control" placeholder="Enter username"
+            value="{{ form.username.value|default:'' }}">
+          {% if form.username.errors %}
+            <small style="color: #fca5a5;">{{ form.username.errors|join:", " }}</small>
+          {% endif %}
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label" style="color: rgba(255,255,255,0.75); font-size: 0.85rem;">Email <span style="color: rgba(255,255,255,0.3); font-size: 0.78rem;">(optional)</span></label>
+          <input type="email" name="email" class="form-control" placeholder="Enter email"
+            value="{{ form.email.value|default:'' }}">
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label class="form-label" style="color: rgba(255,255,255,0.75); font-size: 0.85rem;">Password</label>
+          <input type="password" name="password1" class="form-control" placeholder="Create password">
+          {% if form.password1.errors %}
+            <small style="color: #fca5a5;">{{ form.password1.errors|join:", " }}</small>
+          {% endif %}
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-4">
+          <label class="form-label" style="color: rgba(255,255,255,0.75); font-size: 0.85rem;">Confirm Password</label>
+          <input type="password" name="password2" class="form-control" placeholder="Repeat password">
+          {% if form.password2.errors %}
+            <small style="color: #fca5a5;">{{ form.password2.errors|join:", " }}</small>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn w-100"
+          style="background: #2563eb; color: white; border-radius: 10px; padding: 10px; font-size: 0.9rem; border: none;">
+          Create Account
+        </button>
+
+        <p class="text-center mt-3 mb-0" style="color: rgba(255,255,255,0.45); font-size: 0.85rem;">
+          Already have an account?
+          <a href="{% url 'login' %}" style="color: #60a5fa; text-decoration: none;">Login</a>
+        </p>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .form-control {
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    color: white !important;
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+  }
+  .form-control::placeholder { color: rgba(255,255,255,0.35); }
+  .form-control:focus {
+    background: rgba(255,255,255,0.12) !important;
+    border-color: rgba(255,255,255,0.3) !important;
+    box-shadow: none !important;
+    color: white !important;
+  }
+</style>
+
+{% endblock %}
