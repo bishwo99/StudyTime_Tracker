@@ -19,11 +19,22 @@ def add_session(request):
         form = SessionForm()
 
     return render(request,'form.html', {'form' : form})
+
 @login_required
 def session_list(request):
-    print("USER:", request.user)
     sessions = StudySession.objects.filter(user = request.user)
-    print("DATA:", sessions)
+
+    start = request.GET.get('start')
+    end = request.GET.get('end')
+
+    if start and end:
+        sessions = sessions.filter(created_at__date__range = [start,end])
+    elif start:
+        sessions = sessions.filter(created_at__date__gte =start)
+    elif end:
+        sessions = sessions.filter(created_at__date__lte=end )
+
+
     return render(request,'session_list.html', {"sessions": sessions})
 
 @login_required

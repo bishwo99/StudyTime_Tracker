@@ -6,11 +6,10 @@ from django.contrib.auth.forms import UserCreationForm
 class SessionForm(forms.ModelForm):
     class Meta():
         model = StudySession
-        fields = ['subject','hours','date']
+        fields = ['subject','hours']
         widgets = {
             'subject': forms.TextInput(attrs={'class': 'form-control'}),
             'hours': forms.NumberInput(attrs={'class': 'form-control'}),
-            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
 
 class UserForm(UserCreationForm):

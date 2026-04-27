@@ -6,7 +6,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="text-white fw-bold mb-0" style="font-size: 2rem;">My Sessions</h2>
-      <a href="{% url 'add_session' %}" class="btn btn-primary rounded-pill px-4"
+      <a href="{% url 'add_session' %}" class="btn btn-primary rounded-pill px-4 btn-add-session"
         style="background: #2563eb; border-color: #2563eb; font-size: 0.9rem;">
         + Add Session
       </a>
@@ -21,6 +21,23 @@
       box-shadow: 0 8px 40px rgba(0,0,0,0.35);
       padding: 10px 20px 20px;
     ">
+
+      <!-- 🔽 FILTER FORM (new) -->
+      <form method="GET" class="mb-3 d-flex gap-2 align-items-center">
+        <input type="date" name="start" value="{{ request.GET.start }}"
+          class="form-control form-control-sm"
+          style="max-width: 180px;">
+
+        <input type="date" name="end" value="{{ request.GET.end }}"
+          class="form-control form-control-sm"
+          style="max-width: 180px;">
+
+        <button type="submit" class="btn btn-sm btn-light">Filter</button>
+
+        <a href="{% url 'session_list' %}" class="btn btn-sm btn-outline-light">Clear</a>
+      </form>
+      <!-- 🔼 FILTER FORM END -->
+
       {% if sessions %}
       <div class="table-responsive">
         <table class="table align-middle mb-0" style="color: white;">
@@ -37,7 +54,7 @@
             <tr style="border-bottom: 1px solid rgba(255,255,255,0.07);">
               <td class="py-3" style="color: rgba(255,255,255,0.92); border: none; background: transparent;">{{ s.subject }}</td>
               <td style="color: rgba(255,255,255,0.85); border: none; background: transparent;">{{ s.hours }}</td>
-              <td style="color: rgba(255,255,255,0.85); border: none; background: transparent;">{{ s.date|date:"M d, Y" }}</td>
+              <td style="color: rgba(255,255,255,0.85); border: none; background: transparent;">{{ s.created_at|date:"M d, Y" }}</td>
               <td class="text-end" style="border: none; background: transparent;">
                 <a href="{% url 'update_session' s.id %}" class="btn btn-sm me-2"
                   style="background: transparent; border: 1px solid rgba(234,179,8,0.7); color: #eab308; border-radius: 8px; padding: 5px 16px; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 5px;"
@@ -68,8 +85,20 @@
   </div>
 </div>
 
-<!-- Fix Bootstrap table white background -->
 <style>
+  .btn-add-session {
+    background: transparent !important;
+    border: 1px solid white !important;
+    color: white !important;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  .btn-add-session:hover {
+    background: #1d4ed8 !important;
+    border-color: #1d4ed8 !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5);
+  }
   .table > :not(caption) > * > * {
     background-color: transparent !important;
     color: inherit;
