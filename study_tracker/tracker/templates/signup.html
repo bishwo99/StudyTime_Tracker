@@ -42,18 +42,37 @@
         </div>
 
         <!-- Password -->
-        <div class="mb-3">
+        <div class="mb-3" style="position: relative;">
           <label class="form-label" style="color: rgba(255,255,255,0.75); font-size: 0.85rem;">Password</label>
-          <input type="password" name="password1" class="form-control" placeholder="Create password">
+          
+          <input type="password" name="password1" id="password1"
+                class="form-control" placeholder="Create password">
+
+          <!-- 👁 icon -->
+          <span onclick="togglePassword('password1')"
+                style="position:absolute; right:12px; top:38px; cursor:pointer; color:white;">
+                👁
+          </span>
+
           {% if form.password1.errors %}
             <small style="color: #fca5a5;">{{ form.password1.errors|join:", " }}</small>
           {% endif %}
         </div>
 
+
         <!-- Confirm Password -->
-        <div class="mb-4">
+        <div class="mb-4" style="position: relative;">
           <label class="form-label" style="color: rgba(255,255,255,0.75); font-size: 0.85rem;">Confirm Password</label>
-          <input type="password" name="password2" class="form-control" placeholder="Repeat password">
+          
+          <input type="password" name="password2" id="password2"
+                class="form-control" placeholder="Repeat password">
+
+          <!-- 👁 icon -->
+          <span onclick="togglePassword('password2')"
+                style="position:absolute; right:12px; top:38px; cursor:pointer; color:white;">
+                👁
+          </span>
+
           {% if form.password2.errors %}
             <small style="color: #fca5a5;">{{ form.password2.errors|join:", " }}</small>
           {% endif %}
@@ -91,4 +110,14 @@
   }
 </style>
 
+<script>
+function togglePassword(id) {
+    const input = document.getElementById(id);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+</script>
 {% endblock %}
