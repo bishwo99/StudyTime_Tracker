@@ -71,9 +71,12 @@ body { font-family: 'Segoe UI', sans-serif; }
           <a href="{% url 'session_list' %}" class="nav-btn-sessions">
             <i class="bi bi-grid" style="font-size: 0.9rem;"></i> Sessions
           </a>
-          <a href="{% url 'logout' %}" class="nav-btn-logout">
-            <i class="bi bi-box-arrow-right" style="font-size: 0.9rem;"></i> Logout
-          </a>
+          <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="nav-btn-logout" style="background:none;">
+              <i class="bi bi-box-arrow-right" style="font-size: 0.9rem;"></i> Logout
+            </button>
+          </form>
         {% else %}
           <a href="{% url 'login' %}" class="nav-btn-logout">
             <i class="bi bi-box-arrow-in-right" style="font-size: 0.9rem;"></i> Login
