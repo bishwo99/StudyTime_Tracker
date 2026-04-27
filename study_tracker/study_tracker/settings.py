@@ -127,4 +127,5 @@ LOGIN_REDIRECT_URL = 'session_list'
 LOGOUT_REDIRECT_URL = 'session_list'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+ALLOWED_HOSTS = ['*']
 
