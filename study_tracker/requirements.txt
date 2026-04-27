@@ -3,7 +3,7 @@ attrs
 Babel
 bcc
 blinker
-Brlapi
+
 certifi
 chardet
 click
