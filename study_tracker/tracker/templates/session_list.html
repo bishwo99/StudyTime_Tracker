@@ -22,21 +22,27 @@
       padding: 10px 20px 20px;
     ">
 
-      <!-- 🔽 FILTER FORM (new) -->
-      <form method="GET" class="mb-3 d-flex gap-2 align-items-center">
+<!-- 🔽 FILTER FORM (updated) -->
+      <form method="GET" class="mb-3 d-flex flex-wrap gap-2 align-items-center">
+
         <input type="date" name="start" value="{{ request.GET.start }}"
-          class="form-control form-control-sm"
-          style="max-width: 180px;">
+          class="form-control form-control-sm custom-input"
+          style="max-width: 160px;">
 
         <input type="date" name="end" value="{{ request.GET.end }}"
-          class="form-control form-control-sm"
-          style="max-width: 180px;">
+          class="form-control form-control-sm custom-input"
+          style="max-width: 160px;">
 
-        <button type="submit" class="btn btn-sm btn-light">Filter</button>
+        <button type="submit" class="btn btn-sm btn-light px-3">
+          Filter
+        </button>
 
-        <a href="{% url 'session_list' %}" class="btn btn-sm btn-outline-light">Clear</a>
+        <a href="{% url 'session_list' %}" class="btn btn-sm btn-outline-light px-3">
+          Clear
+        </a>
+
       </form>
-      <!-- 🔼 FILTER FORM END -->
+<!-- 🔼 FILTER FORM END -->
 
       {% if sessions %}
       <div class="table-responsive">
@@ -106,6 +112,28 @@
   .table-responsive {
     background: transparent !important;
   }
+</style>
+
+<style>
+.custom-input {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white !important;
+}
+
+.custom-input:focus {
+  background: rgba(255,255,255,0.12) !important;
+  color: white;
+  border-color: rgba(255,255,255,0.4);
+  box-shadow: none;
+}
+
+/* mobile fix */
+@media (max-width: 576px) {
+  .custom-input {
+    max-width: 100% !important;
+  }
+}
 </style>
 
 {% endblock %}
